@@ -19,7 +19,7 @@ jobs:
       id: get-info
       run: |
         echo "COMMIT_MESSAGE=$(git log -1 --pretty=format:'%s')" >> $GITHUB_ENV
-        echo "CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD)" >> $GITHUB_ENV
+        echo "CHANGED_FILES=$(git diff --name-only HEAD^ HEAD)" >> $GITHUB_ENV
 
     - name: Set up Python
       uses: actions/setup-python@v4
@@ -35,7 +35,7 @@ jobs:
         python generate_log.py
 
     - name: Commit changes
-      if: ${{ contains(github.event.head_commit.message, 'Update HTML file with new <li> tag') }}
+      if: contains(github.event.head_commit.message, 'Update')
       uses: EndBug/add-and-commit@v9
       with:
         author_name: 'Your Name'
