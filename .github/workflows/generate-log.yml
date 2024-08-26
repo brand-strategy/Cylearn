@@ -18,9 +18,16 @@ jobs:
     - name: Get commit message and changed files
       id: get-info
       run: |
-        # 커밋 메시지와 변경된 파일 목록을 명령줄 인자로 스크립트에 전달
-        COMMIT_MESSAGE=$(git log -1 --pretty=format:'%s')
-        CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD)
+        # 최신 커밋 해시 가져오기
+        COMMIT_HASH=$(git rev-parse HEAD)
+        
+        # 최신 커밋 메시지 가져오기
+        COMMIT_MESSAGE=$(git log -1 --pretty=format:'%s' ${COMMIT_HASH})
+
+        # 변경된 파일 목록 가져오기
+        CHANGED_FILES=$(git diff --name-only ${COMMIT_HASH}^ ${COMMIT_HASH})
+
+        # Python 스크립트 실행
         python generate_log.py "$COMMIT_MESSAGE" "$CHANGED_FILES"
 
     - name: Set up Python
