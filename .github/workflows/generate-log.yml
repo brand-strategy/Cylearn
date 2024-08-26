@@ -26,7 +26,7 @@ jobs:
 
     - name: Update HTML file
       run: |
-        python update_html.py
+        python generate_log.py
 
     - name: Commit changes
       uses: EndBug/add-and-commit@v9
