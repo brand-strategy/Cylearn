@@ -33,6 +33,6 @@ jobs:
       with:
         author_name: 'Your Name'
         author_email: 'your.email@example.com'
-        message: 'Add <div> tags to index.html'
+        message: 'Add new <li> elements to index.html'
         add: 'index.html'
         token: ${{ secrets.PAT_TOKEN }}  # PAT을 사용하여 커밋
