@@ -24,9 +24,9 @@ jobs:
         # 최신 커밋 메시지 가져오기
         COMMIT_MESSAGE=$(git log -1 --pretty=format:'%s' ${COMMIT_HASH})
 
-        # 변경된 파일 목록 가져오기
-        CHANGED_FILES=$(git diff --name-only ${COMMIT_HASH}^ ${COMMIT_HASH})
-
+        # 변경된 파일 목록 가져오기 (이전 커밋이 없을 경우 모든 파일 목록을 가져오도록 설정)
+        CHANGED_FILES=$(git diff --name-only ${COMMIT_HASH}^ ${COMMIT_HASH} || echo "No previous commit")
+        
         # Python 스크립트 실행
         python generate_log.py "$COMMIT_MESSAGE" "$CHANGED_FILES"
 
