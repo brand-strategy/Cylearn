@@ -1,4 +1,5 @@
 import sys
+import os
 from bs4 import BeautifulSoup
 from datetime import datetime
 
@@ -15,9 +16,10 @@ index_html_path = 'index.html'
 
 # <li> 태그의 내용 설정
 li_contents = []
-for file in changed_files.split(','):
-    if file and file != index_html_path:
-        li_contents.append(f'<li>{commit_message},{file},{datetime.now().strftime("%Y-%m-%d")}</li>')
+if changed_files != "No previous commit":
+    for file in changed_files.split(','):
+        if file and file != index_html_path:
+            li_contents.append(f'<li>{commit_message},{file},{datetime.now().strftime("%Y-%m-%d")}</li>')
 
 # HTML 파일을 업데이트
 if os.path.exists(index_html_path):
@@ -36,3 +38,5 @@ if os.path.exists(index_html_path):
             file.write(str(soup.prettify()))
 
     print(f'Updated {index_html_path}')
+else:
+    print(f'{index_html_path} does not exist')
