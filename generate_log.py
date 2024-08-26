@@ -31,4 +31,4 @@ if os.path.exists(index_html_path):
         with open(index_html_path, 'w', encoding='utf-8') as file:
             file.write(str(soup))
 
-    print(f'Updated {index_html_path}')
+    print(f'Updated {index_html_path}') 
