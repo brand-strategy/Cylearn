@@ -29,8 +29,8 @@ jobs:
     - name: Commit changes
       uses: EndBug/add-and-commit@v9
       with:
-        author_name: 'Your Name'
-        author_email: 'your.email@example.com'
+        author_name: 'HriJiWon'
+        author_email: 'gbwlxhd97@hri.co.kr'
         message: 'Update change log'
         add: 'change_log.html'
         token: ${{ secrets.PAT_TOKEN }}  # Personal Access Token 사용
